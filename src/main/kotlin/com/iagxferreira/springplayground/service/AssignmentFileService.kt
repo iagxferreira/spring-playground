@@ -18,9 +18,8 @@ class AssignmentFileService(
         return try {
             val assignment = request.originalFilename?.let {
                 AssignmentFile(id = UUID.randomUUID(), name = it, content = request.bytes) }
-            if (assignment != null) {
-                assignmentRepository.save(assignment)
-            }
+            if (assignment != null) assignmentRepository.save(assignment)
+
             "Assignment submitted successfully"
         } catch (ex: IOException) {
             throw RuntimeException(ex)
